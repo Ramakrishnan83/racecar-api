@@ -1,0 +1,42 @@
+package com.galvanize.racecar.controller;
+
+import com.galvanize.racecar.Repository.CarRepository;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
+
+import javax.transaction.Transactional;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureTestDatabase
+@Transactional
+@ActiveProfiles("test")
+public class CarControllerTest {
+    @Autowired
+    MockMvc mockMvc;
+
+    @Autowired
+    CarRepository carRepository;
+
+    @Test
+    public void getCars() throws Exception {
+        mockMvc.perform(get("/api/v1/cars"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.size()").exists())
+                .andExpect(jsonPath("$.[0].id").exists())
+                .andExpect(jsonPath("$.[0].model").value("Corvette"));
+
+
+    }
+}
