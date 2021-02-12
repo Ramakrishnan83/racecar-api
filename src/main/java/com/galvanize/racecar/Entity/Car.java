@@ -1,11 +1,9 @@
 package com.galvanize.racecar.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -23,7 +21,7 @@ public class Car {
     private String nickname;
     private String model;
     private long modelyear;
-    private long owner;
+    private long driver_id;
     private String status;
     private long topspeed;
 

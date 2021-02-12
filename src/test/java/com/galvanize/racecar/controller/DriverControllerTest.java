@@ -33,9 +33,9 @@ public class DriverControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$.size()").exists())
-                .andExpect(jsonPath("$.[0].id").exists());
-                /*.andExpect(jsonPath("$.[0].model").value("Corvette"));
-*/
+                .andExpect(jsonPath("$.[0].id").exists())
+                .andExpect(jsonPath("$.[0].firstName").value("Maria"));
+
 
     }
 

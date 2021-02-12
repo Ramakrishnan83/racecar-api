@@ -1,12 +1,10 @@
 package com.galvanize.racecar.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -26,8 +24,9 @@ public class Driver {
     private long age;
     private String nickName;
     @OneToMany
-    @JoinColumn(name = "CAR_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "driver_id", referencedColumnName = "ID")
     private List<Car> cars;
     private long wins;
     private long losses;
+
 }

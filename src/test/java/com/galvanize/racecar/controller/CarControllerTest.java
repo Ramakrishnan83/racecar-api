@@ -56,7 +56,6 @@ public class CarControllerTest {
                 .model("Ferrari")
                 .nickname("Blue Fire")
                 .modelyear(2017)
-                .owner(13)
                 .topspeed(223)
                 .status("AVAILABLE")
                 .build();
